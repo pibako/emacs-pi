@@ -21,6 +21,30 @@
 
 (package-initialize)
 
+;; install this packages
+(defvar packages-to-install
+  '(auctex auto-complete coffee-mode exec-path-from-shell expand-region feature-mode findr flymake-coffee flymake-css flymake-ruby flymake-shell gh gist google-this graphviz-dot-mode iedit inf-ruby inflections jump logito magit magit-gh-pulls magit-push-remote magithub markdown-mode mmm-mode org-magit pcache php-mode popup pov-mode rainbow-mode rinari ruby-compilation ruby-mode scala-mode scheme-complete scss-mode textile-mode textmate w3m wrap-region yaml-mode yari yasnippet zenburn-theme) 
+  "A list of packages to ensure are installed at launch.")
+
+(require 'cl)
+(defun packages-installed-p ()
+  (loop for p in packages-to-install
+        when (not (package-installed-p p)) do (return nil)
+        finally (return t)))
+
+(defun packages-install ()
+  (unless (packages-installed-p)
+    ;; check for new packages (package versions)
+    (message "%s" "Emacs is now refreshing its package database...")
+    (package-refresh-contents)
+    (message "%s" " done.")
+    ;; install the missing packages
+    (dolist (p packages-to-install)
+      (unless (package-installed-p p)
+        (package-install p)))))
+
+(packages-install)
+
 ;; get rid of this silly toolbar
 (tool-bar-mode -1)
 
