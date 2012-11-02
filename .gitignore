@@ -1,0 +1,8 @@
+.DS_Store
+.ercrc.el.gpg
+elpa/*
+ac-comphist.dat
+ede-projects.el
+tramp
+url/*
+var/*
