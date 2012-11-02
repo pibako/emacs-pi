@@ -360,7 +360,7 @@ the current directory in Python's search path."
 (ac-config-default)
 
 ;; Rsense
-(setq rsense-home "/Users/pi/.emacs.d//rsense-0.3")
+(setq rsense-home "/Users/pi/.emacs.d/vendor/rsense-0.3")
 (add-to-list 'load-path (concat rsense-home "/etc"))
 (require 'rsense)
  
