@@ -280,7 +280,10 @@ the current directory in Python's search path."
 ;; set pager to avoid "terminal is not fully functional" message
 (setenv "PAGER" "/bin/cat")
 
-(load-file "~/.emacs.d/.ercrc.el.gpg")
+;; Load erc configuration if it is available
+(let ((erc-file-path "~/.emacs.d/.ercrc.el.gpg"))
+  (if (file-exists-p erc-file-path)
+      (load-file erc-file-path)))
 
 ;; D-Mode: Mode for editing DTrace D language.
 (add-to-list 'load-path "~/.emacs.d/vendor")
