@@ -506,6 +506,4 @@ file of a buffer in an external program."
 
 ;; wrap-mode
 (wrap-region-global-mode t)
-(add-to-list 'wrap-region-tag-active-modes 'HTML)
-(add-to-list 'wrap-region-tag-active-modes 'ERB-HTML)
-(add-to-list 'wrap-region-tag-active-modes 'MMM)
+(add-to-list 'wrap-region-tag-active-modes 'html-erb-mode)
