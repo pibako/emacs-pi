@@ -168,7 +168,8 @@
                ;;             (mode . muse-mode)))
                ("ruby" (or
                         (name . "\\.html\\.erb\\'")
-                        (mode . ruby-mode)))))))
+                        (mode . ruby-mode)
+                        (mode . inf-ruby-mode)))))))
 
 (add-hook 'ibuffer-mode-hook
           (lambda ()
