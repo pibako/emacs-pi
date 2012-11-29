@@ -23,7 +23,7 @@
 
 ;; install this packages
 (defvar packages-to-install
-  '(auctex auto-complete coffee-mode exec-path-from-shell expand-region feature-mode findr flymake-coffee flymake-css flymake-ruby flymake-shell gh gist google-this graphviz-dot-mode iedit inf-ruby inflections jump logito magit magit-gh-pulls magit-push-remote magithub markdown-mode mmm-mode org-magit pcache php-mode popup rainbow-mode rinari ruby-compilation ruby-mode scala-mode scss-mode textile-mode textmate w3m wrap-region yaml-mode yari yasnippet zenburn-theme) 
+  '(auctex auto-complete coffee-mode exec-path-from-shell expand-region feature-mode findr flymake-coffee flymake-css flymake-ruby flymake-shell gh gist google-this graphviz-dot-mode iedit inf-ruby inflections jump logito magit magit-gh-pulls magit-push-remote magithub markdown-mode mmm-mode org-magit pcache php-mode popup rainbow-mode rinari ruby-compilation ruby-mode scala-mode scss-mode textile-mode textmate w3m wrap-region yaml-mode yari yasnippet zenburn-theme js-comint) 
   "A list of packages to ensure are installed at launch.")
 
 (require 'cl)
@@ -542,3 +542,11 @@ file of a buffer in an external program."
 ;; wrap-mode
 (wrap-region-global-mode t)
 (add-to-list 'wrap-region-tag-active-modes 'html-erb-mode)
+
+;; css-mode set indentation to 2
+(setq css-indent-offset 2)
+
+;; js-mode set indentation to 2
+(setq js-indent-level 2)
+
+(setq inferior-js-program-command "/usr/local/bin/rhino")
