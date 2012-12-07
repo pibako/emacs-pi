@@ -366,7 +366,7 @@ the current directory in Python's search path."
   (add-to-list 'auto-mode-alist '("\\.ru\\'" . ruby-mode))
   (add-hook 'ruby-mode-hook '(lambda ()
                                (setq ruby-deep-arglist t)
-                               (setq ruby-deep-indent-paren nil)
+                               ;; (setq ruby-deep-indent-paren nil)
                                (setq c-tab-always-indent nil)
                                (require 'inf-ruby)
                                (require 'ruby-compilation))))
@@ -374,7 +374,6 @@ the current directory in Python's search path."
 ;; Add key shortcut to yari documentation
 (defun ri-bind-key () (local-set-key (kbd "C-c r") 'yari))
 (add-hook 'ruby-mode-hook 'ri-bind-key)
-
 
 ;; enable multi major mode
 (require 'mmm-auto)
