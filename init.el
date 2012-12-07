@@ -12,7 +12,7 @@
 
 (add-to-list 'load-path "~/.emacs.d/")
 
-;; package marmalade 
+;; package marmalade
 (require 'package)
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
                          ;; ("marmalade" . "http://marmalade-repo.org/packages/")
@@ -23,7 +23,7 @@
 
 ;; install this packages
 (defvar packages-to-install
-  '(auctex auto-complete coffee-mode exec-path-from-shell expand-region feature-mode findr flymake-coffee flymake-css flymake-ruby flymake-shell gh gist google-this graphviz-dot-mode iedit inf-ruby inflections jump logito magit magit-gh-pulls magit-push-remote magithub markdown-mode mmm-mode org-magit pcache php-mode popup rainbow-mode rinari ruby-compilation ruby-mode scala-mode scss-mode textile-mode textmate w3m wrap-region yaml-mode yari yasnippet zenburn-theme js-comint) 
+  '(auctex auto-complete coffee-mode exec-path-from-shell expand-region feature-mode findr flymake-coffee flymake-css flymake-ruby flymake-shell gh gist google-this graphviz-dot-mode iedit inf-ruby inflections jump logito magit magit-gh-pulls magit-push-remote magithub markdown-mode mmm-mode org-magit pcache php-mode popup rainbow-mode rinari ruby-compilation ruby-mode scala-mode scss-mode textile-mode textmate w3m wrap-region yaml-mode yari yasnippet zenburn-theme js-comint)
   "A list of packages to ensure are installed at launch.")
 
 (require 'cl)
@@ -55,14 +55,14 @@
 (when (memq window-system '(mac ns))
   (exec-path-from-shell-initialize))
 
-;; (setenv "PATH" 
+;; (setenv "PATH"
 ;;         (shell-command-to-string "echo $PATH"))
 
 ;; set emacs exec-path
-;; (setq exec-path (append exec-path 
+;; (setq exec-path (append exec-path
 ;;                         (split-string (getenv "PATH") ":")))
 
-;; set font 
+;; set font
 ;; (set-face-attribute 'default nil :height 110)
 (add-to-list 'default-frame-alist '(font . "Menlo-11"))
 
@@ -208,45 +208,45 @@
   (cond
    ((not symbol-list)
     (let ((ido-mode ido-mode)
-	  (ido-enable-flex-matching
-	   (if (boundp 'ido-enable-flex-matching)
-	       ido-enable-flex-matching t))
-	  name-and-pos symbol-names position)
+    (ido-enable-flex-matching
+     (if (boundp 'ido-enable-flex-matching)
+         ido-enable-flex-matching t))
+    name-and-pos symbol-names position)
       (unless ido-mode
-	(ido-mode 1)
-	(setq ido-enable-flex-matching t))
+  (ido-mode 1)
+  (setq ido-enable-flex-matching t))
       (while (progn
-	       (imenu--cleanup)
-	       (setq imenu--index-alist nil)
-	       (ido-goto-symbol (imenu--make-index-alist))
-	       (setq selected-symbol
-		     (ido-completing-read "Symbol? " symbol-names))
-	       (string= (car imenu--rescan-item) selected-symbol)))
+         (imenu--cleanup)
+         (setq imenu--index-alist nil)
+         (ido-goto-symbol (imenu--make-index-alist))
+         (setq selected-symbol
+         (ido-completing-read "Symbol? " symbol-names))
+         (string= (car imenu--rescan-item) selected-symbol)))
       (unless (and (boundp 'mark-active) mark-active)
-	(push-mark nil t nil))
+  (push-mark nil t nil))
       (setq position (cdr (assoc selected-symbol name-and-pos)))
       (cond
        ((overlayp position)
-	(goto-char (overlay-start position)))
+  (goto-char (overlay-start position)))
        (t
-	(goto-char position)))))
+  (goto-char position)))))
    ((listp symbol-list)
     (dolist (symbol symbol-list)
       (let (name position)
-	(cond
-	 ((and (listp symbol) (imenu--subalist-p symbol))
-	  (ido-goto-symbol symbol))
-	 ((listp symbol)
-	  (setq name (car symbol))
-	  (setq position (cdr symbol)))
-	 ((stringp symbol)
-	  (setq name symbol)
-	  (setq position
-		(get-text-property 1 'org-imenu-marker symbol))))
-	(unless (or (null position) (null name)
-		    (string= (car imenu--rescan-item) name))
-	  (add-to-list 'symbol-names name)
-	  (add-to-list 'name-and-pos (cons name position))))))))
+  (cond
+   ((and (listp symbol) (imenu--subalist-p symbol))
+    (ido-goto-symbol symbol))
+   ((listp symbol)
+    (setq name (car symbol))
+    (setq position (cdr symbol)))
+   ((stringp symbol)
+    (setq name symbol)
+    (setq position
+    (get-text-property 1 'org-imenu-marker symbol))))
+  (unless (or (null position) (null name)
+        (string= (car imenu--rescan-item) name))
+    (add-to-list 'symbol-names name)
+    (add-to-list 'name-and-pos (cons name position))))))))
 ;; (global-set-key "\M-i" 'ido-goto-symbol) ; or any key you see fit
 (global-set-key "\C-ci" 'ido-goto-symbol) ; or any key you see fit
 
@@ -290,7 +290,7 @@ the current directory in Python's search path."
 (push "/Applications/Maxima.app/Contents/Resources/maxima/bin" exec-path)
 (push "/Applications/Maxima.app/Contents/Resources/" exec-path)
 (setenv "PATH"
-	(concat (getenv "PATH")
+  (concat (getenv "PATH")
           ":/Applications/Gnuplot.app/Contents/Resources/bin:/Applications/Maxima.app/Contents/Resources/maxima/bin"))
 (setq imaxima-maxima-program "maxima.sh")
 ;; for imaxima
@@ -302,8 +302,8 @@ the current directory in Python's search path."
 
 ;; nice way to have look at your kill ring contents
 ;; (global-set-key "\C-cy" '(lambda ()
-;; 			   (interactive)
-;; 			   (popup-menu 'yank-menu)))
+;;         (interactive)
+;;         (popup-menu 'yank-menu)))
 
 ;; window move
 (windmove-default-keybindings)
@@ -326,7 +326,7 @@ the current directory in Python's search path."
 (autoload 'd-mode "d-mode" () t)
 (add-to-list 'auto-mode-alist '("\\.d\\'" . d-mode))
 
-;; When loaded, runs all hooks from d-mode-hook 
+;; When loaded, runs all hooks from d-mode-hook
 (add-hook 'd-mode-hook 'imenu-add-menubar-index)
 (add-hook 'd-mode-hook 'font-lock-mode)
 
@@ -425,7 +425,7 @@ the current directory in Python's search path."
 (setq rsense-home "/Users/pi/.emacs.d/vendor/rsense-0.3")
 (add-to-list 'load-path (concat rsense-home "/etc"))
 (require 'rsense)
- 
+
 ;; Rsense + Autocomplete
 (add-hook 'ruby-mode-hook
           (lambda ()
@@ -500,9 +500,9 @@ file of a buffer in an external program."
 (require 'external-abook)
 (setq external-abook-command "contacts -lSf '%%e\t\"%%n\"' '%s'")
 ;; (setq external-abook-command "contacts -lf '%%e\t%%n' %s")
-(eval-after-load "message" 
-  '(progn 
-     (add-to-list 'message-mode-hook 
+(eval-after-load "message"
+  '(progn
+     (add-to-list 'message-mode-hook
                   '(lambda ()
                      (define-key message-mode-map "\C-c\t" 'external-abook-try-expand)))))
 
@@ -528,7 +528,7 @@ file of a buffer in an external program."
 (require 'nnir)
 
 ;; start gnus
-(gnus)
+;; (gnus)
 
 ;; enable narrow region
 (put 'narrow-to-region 'disabled nil)
@@ -550,3 +550,11 @@ file of a buffer in an external program."
 (setq js-indent-level 2)
 
 (setq inferior-js-program-command "/usr/local/bin/rhino")
+
+;; delete whitespace and untabify
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+
+(defun untabify-hook ()
+  (untabify (point-min) (point-max)))
+
+(add-hook 'before-save-hook 'untabify-hook)
