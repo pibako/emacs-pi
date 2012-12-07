@@ -392,6 +392,8 @@ the current directory in Python's search path."
 
 ;; Optional settings:
 
+(setq mmm-parse-when-idle t)
+
 ;; (setq mmm-submode-decoration-level 2
 ;;       mmm-parse-when-idle t)
 
