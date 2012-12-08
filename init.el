@@ -371,6 +371,13 @@ the current directory in Python's search path."
                                (require 'inf-ruby)
                                (require 'ruby-compilation))))
 
+;; Add electric-indent-mode for ruby
+(add-hook 'ruby-mode-hook 'electric-indent-mode)
+
+;; Enable ruby-end-mode
+(add-hook 'ruby-mode-hook 'ruby-end-mode)
+(setq ruby-end-insert-newline nil)
+
 ;; Add key shortcut to yari documentation
 (defun ri-bind-key () (local-set-key (kbd "C-c r") 'yari))
 (add-hook 'ruby-mode-hook 'ri-bind-key)
