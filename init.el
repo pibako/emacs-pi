@@ -579,3 +579,6 @@ file of a buffer in an external program."
                                  "bibtex `basename %b`"
                                  "pdflatex -interaction nonstopmode %b"
                                  "pdflatex -interaction nonstopmode %b"))
+
+(add-to-list 'load-path "~/.emacs.d/vendor/rcodetools")
+(require 'rcodetools)
