@@ -563,3 +563,19 @@ file of a buffer in an external program."
   (untabify (point-min) (point-max)))
 
 (add-hook 'before-save-hook 'untabify-hook)
+
+;; enable reftex
+(defun org-mode-reftex-setup ()
+  (load-library "reftex")
+  (and (buffer-file-name)
+       (file-exists-p (buffer-file-name))
+       (reftex-parse-all))
+  (define-key org-mode-map (kbd "C-c )") 'reftex-citation))
+
+(add-hook 'org-mode-hook 'org-mode-reftex-setup)
+
+;; customize latex to pdf process to use bibtex
+(setq org-latex-to-pdf-process '("pdflatex -interaction nonstopmode %b"
+                                 "bibtex `basename %b`"
+                                 "pdflatex -interaction nonstopmode %b"
+                                 "pdflatex -interaction nonstopmode %b"))
