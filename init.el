@@ -584,3 +584,13 @@ file of a buffer in an external program."
 
 (add-to-list 'load-path "~/.emacs.d/vendor/rcodetools")
 (require 'rcodetools)
+
+(setq auto-mode-alist
+      (append  '(("\\.st\\'" . smalltalk-mode))
+               auto-mode-alist))
+
+(add-to-list 'load-path "/usr/local/Cellar/gnu-smalltalk/3.2.4/share/emacs/site-lisp/")
+
+(autoload 'smalltalk-mode "smalltalk-mode.elc" "Smalltalk mode" t)
+
+(autoload 'smalltalk-mode "gst-mode.elc" "GNU Smalltalk mode" t)
