@@ -578,7 +578,9 @@ file of a buffer in an external program."
 (setq org-latex-to-pdf-process '("pdflatex -interaction nonstopmode %b"
                                  "bibtex `basename %b`"
                                  "pdflatex -interaction nonstopmode %b"
-                                 "pdflatex -interaction nonstopmode %b"))
+                                 "pdflatex -interaction nonstopmode %b"
+                                 "rm %b.bbl %b.blg"
+                                 "rm %b.tex"))
 
 (add-to-list 'load-path "~/.emacs.d/vendor/rcodetools")
 (require 'rcodetools)
