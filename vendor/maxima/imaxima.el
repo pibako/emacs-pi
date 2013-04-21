@@ -420,6 +420,17 @@ dots per inch.  Buffer-local to rendering buffer.")
   (message "%s %s" *imaxima-autoconf-package* *imaxima-autoconf-version*))
 
 ;;
+;; Reset
+;;
+
+(defun reinit-imaxima ()
+  "Re-initialize imaxima"
+  (interactive)
+  (setq imaxima-filter-running nil
+    imaxima-output nil
+    continuation nil))
+
+;;
 ;; Geometry
 ;;
 
@@ -1174,6 +1185,7 @@ turns them on.  Set `imaxima-use-maxima-mode-flag' to t to use
 	  (switch-to-buffer imaxima-buffer)
 	(set-buffer imaxima-buffer))
       (return-from imaxima t)))
+  (reinit-imaxima)
   (unless (imaxima-image-type-available-p imaxima-image-type)
     (error "Your version of Emacs does not support the image type %s"
 	   imaxima-image-type))
@@ -1183,9 +1195,7 @@ Please customize the option `imaxima-lisp-file'."))
   (setq imaxima-file-counter 0)
   (make-directory
    (setq imaxima-tmp-subdir
-	 ;; For some reason TeX doesn't grok underscores in file names
-	 (imaxima-subst-char-in-string ?_ ?=
-	    (make-temp-name (expand-file-name "imaxima" imaxima-tmp-dir)))))
+	 (make-temp-name (expand-file-name "imaxima" imaxima-tmp-dir))) t)
   (set-file-modes imaxima-tmp-subdir 448) ; 700 in octal
   (let ((process-connection-type process-connection-type-flag))
     (if imaxima-use-maxima-mode-flag

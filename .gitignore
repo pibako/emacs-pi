@@ -6,3 +6,4 @@ ede-projects.el
 tramp
 url/*
 var/*
+flycheck-init*
