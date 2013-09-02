@@ -7,3 +7,4 @@ tramp
 url/*
 var/*
 flycheck-init*
+/auto-save-list/
