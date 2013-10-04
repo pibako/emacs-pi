@@ -1,11 +1,18 @@
-;;;;;;;;;;;;;;;;;;;;
-;; set up unicode
+;;; init.el --- Summary
+;;;
+;;; Commentary:
+;;; My init script - a bit messy
+;;;
+
+;;; Code:
+
+;;; set up unicode
 (prefer-coding-system       'utf-8)
 (set-default-coding-systems 'utf-8)
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
 ;; This from a japanese individual.  I hope it works.
-(setq default-buffer-file-coding-system 'utf-8)
+(setq buffer-file-coding-system 'utf-8)
 ;; From Emacs wiki
 (setq x-select-request-type '(UTF8_STRING COMPOUND_TEXT TEXT STRING))
 ;;;;;;;;;;;;;;;;;;;;
@@ -19,11 +26,15 @@
                          ;; ("tromey" . "http://tromey.com/elpa/")
                          ("melpa" . "http://melpa.milkbox.net/packages/")))
 
+;; Add geiser, generic emacs-scheme
+(add-to-list 'package-archives
+             '("geiser" . "http://download.savannah.gnu.org/releases/geiser/packages"))
+
 (package-initialize)
 
 ;; install this packages
 (defvar packages-to-install
-  '(auctex auto-complete coffee-mode exec-path-from-shell expand-region feature-mode findr flymake-coffee flymake-css flymake-ruby flymake-shell gh gist google-this graphviz-dot-mode iedit inf-ruby inflections jump logito magit magit-gh-pulls magit-push-remote magithub markdown-mode mmm-mode org-magit pcache php-mode popup rainbow-mode rinari ruby-compilation ruby-mode scala-mode scss-mode textile-mode textmate w3m wrap-region yaml-mode yari yasnippet zenburn-theme js-comint)
+  '(auctex auto-complete coffee-mode exec-path-from-shell expand-region feature-mode findr flycheck gh gist google-this graphviz-dot-mode iedit inf-ruby inflections jump logito magit markdown-mode mmm-mode pcache php-mode popup rainbow-mode rinari ruby-compilation ruby-mode scala-mode2 scss-mode textile-mode textmate w3m wrap-region yaml-mode yari yasnippet zenburn-theme js-comint ctags ctags-update)
   "A list of packages to ensure are installed at launch.")
 
 (require 'cl)
@@ -68,9 +79,11 @@
 
 ;; change theme to theme-zenburn
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
-(load-theme 'zenburn t)
+;; (load-theme 'zenburn t)
 ;; (load-theme 'wombat t)
+;; (load-theme 'adwaita t)
 ;; (load-theme 'whiteboard t)
+(load-theme 'leuven t)
 
 ;; disable backup and auto-save files
 (setq make-backup-files nil)
@@ -94,6 +107,13 @@
 
 ;; yes-or-no-p
 (defalias 'yes-or-no-p 'y-or-n-p)
+
+;; Enable ctags autoupdate
+(autoload 'turn-on-ctags-auto-update-mode "ctags-update" "turn on `ctags-auto-update-mode'." t)
+(setq tags-revert-without-query 1)      ; reload tags without yes-no query
+(add-hook 'c-mode-common-hook  'turn-on-ctags-auto-update-mode)
+(add-hook 'emacs-lisp-mode-hook  'turn-on-ctags-auto-update-mode)
+(add-hook 'ruby-mode-hook  'turn-on-ctags-auto-update-mode)
 
 ;;;;;;;;;;;;;;;;;;;; key bindings ;;;;;;;;;;;;;;;;;;;;
 ;; duplicate line
@@ -132,6 +152,7 @@
 
 ;; Magit
 (require 'magit)
+(setq magit-emacsclient-executable "/Applications/Emacs.app/Contents/MacOS/bin/emacsclient") ; Quick fix for emacsclient
 (define-key global-map (kbd "C-x g") 'magit-status)
 
 ;; move to trash
@@ -208,45 +229,45 @@
   (cond
    ((not symbol-list)
     (let ((ido-mode ido-mode)
-    (ido-enable-flex-matching
-     (if (boundp 'ido-enable-flex-matching)
-         ido-enable-flex-matching t))
-    name-and-pos symbol-names position)
+          (ido-enable-flex-matching
+           (if (boundp 'ido-enable-flex-matching)
+               ido-enable-flex-matching t))
+          name-and-pos symbol-names position)
       (unless ido-mode
-  (ido-mode 1)
-  (setq ido-enable-flex-matching t))
+        (ido-mode 1)
+        (setq ido-enable-flex-matching t))
       (while (progn
-         (imenu--cleanup)
-         (setq imenu--index-alist nil)
-         (ido-goto-symbol (imenu--make-index-alist))
-         (setq selected-symbol
-         (ido-completing-read "Symbol? " symbol-names))
-         (string= (car imenu--rescan-item) selected-symbol)))
+               (imenu--cleanup)
+               (setq imenu--index-alist nil)
+               (ido-goto-symbol (imenu--make-index-alist))
+               (setq selected-symbol
+                     (ido-completing-read "Symbol? " symbol-names))
+               (string= (car imenu--rescan-item) selected-symbol)))
       (unless (and (boundp 'mark-active) mark-active)
-  (push-mark nil t nil))
+        (push-mark nil t nil))
       (setq position (cdr (assoc selected-symbol name-and-pos)))
       (cond
        ((overlayp position)
-  (goto-char (overlay-start position)))
+        (goto-char (overlay-start position)))
        (t
-  (goto-char position)))))
+        (goto-char position)))))
    ((listp symbol-list)
     (dolist (symbol symbol-list)
       (let (name position)
-  (cond
-   ((and (listp symbol) (imenu--subalist-p symbol))
-    (ido-goto-symbol symbol))
-   ((listp symbol)
-    (setq name (car symbol))
-    (setq position (cdr symbol)))
-   ((stringp symbol)
-    (setq name symbol)
-    (setq position
-    (get-text-property 1 'org-imenu-marker symbol))))
-  (unless (or (null position) (null name)
-        (string= (car imenu--rescan-item) name))
-    (add-to-list 'symbol-names name)
-    (add-to-list 'name-and-pos (cons name position))))))))
+        (cond
+         ((and (listp symbol) (imenu--subalist-p symbol))
+          (ido-goto-symbol symbol))
+         ((listp symbol)
+          (setq name (car symbol))
+          (setq position (cdr symbol)))
+         ((stringp symbol)
+          (setq name symbol)
+          (setq position
+                (get-text-property 1 'org-imenu-marker symbol))))
+        (unless (or (null position) (null name)
+                    (string= (car imenu--rescan-item) name))
+          (add-to-list 'symbol-names name)
+          (add-to-list 'name-and-pos (cons name position))))))))
 ;; (global-set-key "\M-i" 'ido-goto-symbol) ; or any key you see fit
 (global-set-key "\C-ci" 'ido-goto-symbol) ; or any key you see fit
 
@@ -280,6 +301,12 @@ the current directory in Python's search path."
 ;; (autoload 'maxima "maxima" "Maxima interaction" t)
 ;; (autoload 'imath-mode "imath" "Imath mode for math formula input" t)
 ;; (setq imaxima-use-maxima-mode-flag t)
+(add-to-list 'load-path "~/.emacs.d/vendor/maxima/")
+(autoload 'maxima-mode "maxima" "Maxima mode" t)
+(autoload 'imaxima "imaxima" "Frontend for maxima with Image support" t)
+(autoload 'maxima "maxima" "Maxima interaction" t)
+(autoload 'imath-mode "imath" "Imath mode for math formula input" t)
+(setq imaxima-use-maxima-mode-flag t)
 
 ;; for Lion users
 (setq temporary-file-directory "/tmp")
@@ -290,8 +317,8 @@ the current directory in Python's search path."
 (push "/Applications/Maxima.app/Contents/Resources/maxima/bin" exec-path)
 (push "/Applications/Maxima.app/Contents/Resources/" exec-path)
 (setenv "PATH"
-  (concat (getenv "PATH")
-          ":/Applications/Gnuplot.app/Contents/Resources/bin:/Applications/Maxima.app/Contents/Resources/maxima/bin"))
+        (concat (getenv "PATH")
+                ":/Applications/Gnuplot.app/Contents/Resources/bin:/Applications/Maxima.app/Contents/Resources/maxima/bin"))
 (setq imaxima-maxima-program "maxima.sh")
 ;; for imaxima
 
@@ -345,21 +372,23 @@ the current directory in Python's search path."
 
 ;; coffee
 (defun coffee-custom ()
-  "coffee-mode-hook"
- (set (make-local-variable 'tab-width) 2))
+  "This is a coffee-mode-hook."
+  (set (make-local-variable 'tab-width) 2))
 
 (add-hook 'coffee-mode-hook
-  '(lambda() (coffee-custom)))
+          '(lambda() (coffee-custom)))
 
 ;; flymake ruby
-(add-hook 'ruby-mode-hook 'flymake-ruby-load)
+;; (add-hook 'ruby-mode-hook 'flymake-ruby-load)
 
 ;; ruby mode hook
 (defun ruby-mode-hook ()
+  "This is a ruby-mode-hook."
   (autoload 'ruby-mode "ruby-mode" nil t)
   (add-to-list 'auto-mode-alist '("Capfile" . ruby-mode))
   (add-to-list 'auto-mode-alist '("Gemfile" . ruby-mode))
   (add-to-list 'auto-mode-alist '("Guardfile" . ruby-mode))
+  (add-to-list 'auto-mode-alist '("gemspec" . ruby-mode))
   (add-to-list 'auto-mode-alist '("Rakefile" . ruby-mode))
   (add-to-list 'auto-mode-alist '("\\.rake\\'" . ruby-mode))
   (add-to-list 'auto-mode-alist '("\\.rb\\'" . ruby-mode))
@@ -369,11 +398,8 @@ the current directory in Python's search path."
                                ;; (setq ruby-deep-indent-paren nil)
                                (setq c-tab-always-indent nil)
                                (require 'inf-ruby)
-                               (require 'ruby-compilation))))
-
-;; Enable ruby-end-mode
-(add-hook 'ruby-mode-hook 'ruby-end-mode)
-(setq ruby-end-insert-newline nil)
+                               (require 'ruby-compilation)
+                               (local-set-key (kbd "RET") 'newline-and-indent))))
 
 ;; Add key shortcut to yari documentation
 (defun ri-bind-key () (local-set-key (kbd "C-c r") 'yari))
@@ -408,6 +434,9 @@ the current directory in Python's search path."
 
 (ruby-mode-hook)
 
+;; enable rinari globaly (previously this option was on by default?)
+(global-rinari-mode)
+
 ;; expand-region
 (require 'expand-region)
 (global-set-key (kbd "C-=") 'er/expand-region)
@@ -439,12 +468,12 @@ the current directory in Python's search path."
 
 ;; swap-buffers-in-windows
 (defun swap-buffers-in-windows ()
-  "Put the buffer from the selected window in next window, and vice versa"
+  "Put the buffer from the selected window in next window, and vice versa."
   (interactive)
   (let* ((this (selected-window))
-     (other (next-window))
-     (this-buffer (window-buffer this))
-     (other-buffer (window-buffer other)))
+         (other (next-window))
+         (this-buffer (window-buffer this))
+         (other-buffer (window-buffer other)))
     (set-window-buffer other this-buffer)
     (set-window-buffer this other-buffer)))
 
@@ -462,17 +491,18 @@ the current directory in Python's search path."
 (add-hook 'LaTeX-mode-hook 'TeX-source-correlate-mode)
 (setq TeX-source-correlate-method 'synctex)
 (add-hook 'LaTeX-mode-hook
-      (lambda()
-        (add-to-list 'TeX-expand-list
-             '("%q" skim-make-url))))
+          (lambda()
+            (add-to-list 'TeX-expand-list
+                         '("%q" skim-make-url))))
 
-(defun skim-make-url () (concat
-        (TeX-current-line)
-        " "
-        (expand-file-name (funcall file (TeX-output-extension) t)
-            (file-name-directory (TeX-master-file)))
-        " "
-        (buffer-file-name)))
+(defun skim-make-url ()
+  (concat
+   (TeX-current-line)
+   " "
+   (expand-file-name (funcall file (TeX-output-extension) t)
+                     (file-name-directory (TeX-master-file)))
+   " "
+   (buffer-file-name)))
 (setq TeX-view-program-list
       '(("Skim" "/Applications/Skim.app/Contents/SharedSupport/displayline %q")))
 (setq TeX-view-program-selection '((output-pdf "Skim")))
@@ -512,7 +542,7 @@ file of a buffer in an external program."
                      (define-key message-mode-map "\C-c\t" 'external-abook-try-expand)))))
 
 ;; scala mode
-(require 'scala-mode-auto)
+;; (require 'scala-mode-auto)
 
 ;; load the ensime lisp code...
 (add-to-list 'load-path "~/.emacs.d/vendor/ensime/elisp/")
@@ -582,6 +612,9 @@ file of a buffer in an external program."
                                  "rm %b.bbl %b.blg"
                                  "rm %b.tex"))
 
+;; org-mode export to odt and doc formats
+(require 'ox-odt)
+
 (add-to-list 'load-path "~/.emacs.d/vendor/rcodetools")
 (require 'rcodetools)
 
@@ -596,7 +629,7 @@ file of a buffer in an external program."
 (autoload 'smalltalk-mode "gst-mode.elc" "GNU Smalltalk mode" t)
 
 (defun bf-pretty-print-xml-region (begin end)
-  "Pretty format XML markup in region. You need to have nxml-mode
+  "Pretty format XML markup in region.  You need to have nxml-mode
 http://www.emacswiki.org/cgi-bin/wiki/NxmlMode installed to do
 this.  The function inserts linebreaks to separate tags that have
 nothing but whitespace between them.  It then indents the markup
@@ -609,3 +642,164 @@ by using nxml's indentation rules."
       (backward-char) (insert "\n"))
     (indent-region begin end))
   (message "Ah, much better!"))
+
+;; Enable Flycheck for all files
+;; (add-hook 'find-file-hook 'flycheck-mode)
+;; Enable Flycheck for all programming modes
+;; (add-hook 'prog-mode-hook 'flycheck-mode)
+;; Enable Flycheck for all programming modes
+(add-hook 'ruby-mode-hook 'flycheck-mode)
+
+
+(add-to-list 'load-path "~/.emacs.d/vendor/actionscript")
+(autoload 'actionscript-mode "actionscript-mode" "Major mode for actionscript." t)
+(add-to-list 'auto-mode-alist '("\\.as$" . actionscript-mode))
+
+
+(defun create-scratch-buffer nil
+  "Create a scratch buffer."
+  (interactive)
+  (switch-to-buffer (get-buffer-create "*scratch*"))
+  (lisp-interaction-mode)
+  (insert initial-scratch-message))
+
+;; cuda
+(add-to-list 'auto-mode-alist '("\\.cu$" . c++-mode))
+
+;;; init.el ends here
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(safe-local-variable-values (quote ((encoding . utf-8) (ruby-compilation-executable . "ruby") (ruby-compilation-executable . "ruby1.8") (ruby-compilation-executable . "ruby1.9") (ruby-compilation-executable . "rbx") (ruby-compilation-executable . "jruby")))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+
+(setq google-translate-enable-ido-completion t)
+(setq google-translate-default-source-language "en")
+(setq google-translate-default-target-language "pl")
+(global-set-key "\C-ct" 'google-translate-at-point)
+(global-set-key "\C-cT" 'google-translate-at-point-reverse)
+
+;; itail mode
+(require 'itail)
+
+;; edit with emacs - only chrome?
+(require 'edit-server)
+(edit-server-start)
+
+;;
+;; new editing stuff
+;;
+(defun smart-open-line ()
+  "Insert an empty line after the current line.
+Position the cursor at its beginning, according to the current mode."
+  (interactive)
+  (move-end-of-line nil)
+  (newline-and-indent))
+
+(global-set-key [(shift return)] 'smart-open-line)
+
+(defun copy-file-name-to-clipboard ()
+  "Copy the current buffer file name to the clipboard."
+  (interactive)
+  (let ((filename (if (equal major-mode 'dired-mode)
+                      default-directory
+                    (buffer-file-name))))
+    (when filename
+      (kill-new filename)
+      (message "Copied buffer file name '%s' to the clipboard." filename))))
+
+(defun indent-buffer ()
+  "Indent the currently visited buffer."
+  (interactive)
+  (indent-region (point-min) (point-max)))
+
+(defun indent-region-or-buffer ()
+  "Indent a region if selected, otherwise the whole buffer."
+  (interactive)
+  (save-excursion
+    (if (region-active-p)
+        (progn
+          (indent-region (region-beginning) (region-end))
+          (message "Indented selected region."))
+      (progn
+        (indent-buffer)
+        (message "Indented buffer.")))))
+
+(global-set-key (kbd "C-M-\\") 'indent-region-or-buffer)
+
+(global-hl-line-mode +1)
+
+;; FIX ME:
+;; (defadvice ido-find-file (after find-file-sudo activate)
+;;   "Find file as root if necessary."
+;;   (unless (and buffer-file-name
+;;                (file-writable-p buffer-file-name))
+;;     (find-alternate-file (concat "/sudo:root@localhost:" buffer-file-name))))
+
+(defun delete-file-and-buffer ()
+  "Kill the current buffer and deletes the file it is visiting."
+  (interactive)
+  (let ((filename (buffer-file-name)))
+    (when filename
+      (if (vc-backend filename)
+          (vc-delete-file filename)
+        (progn
+          (delete-file filename)
+          (message "Deleted file %s" filename)
+          (kill-buffer))))))
+
+(global-set-key (kbd "C-c D")  'delete-file-and-buffer)
+
+;; Add flyspell check in comments
+(add-hook 'prog-mode-hook 'flyspell-prog-mode)
+
+
+;; Enable camel case for all programming modes
+(add-hook 'prog-mode-hook 'subword-mode)
+
+;; Some improvements to inf-ruby mode with company-mode
+(add-hook 'after-init-hook 'global-company-mode)
+(eval-after-load 'company
+  '(add-to-list 'company-backends 'company-inf-ruby))
+
+;; Add floobits support (load "~/.emacs.d/floobits/floobits.el")
+(load "~/.emacs.d/vendor/floobits/floobits.el")
+
+(load "~/.emacs.d/vendor/rdoc-mode/rdoc-mode.el")
+
+;; seeing is believing ;-D
+(defun seeing-is-believing ()
+  "Replace the current region (or the whole buffer, if none) with
+the output of seeing_is_believing."
+  (interactive)
+  (let ((beg (if (region-active-p) (region-beginning) (point-min)))
+        (end (if (region-active-p) (region-end) (point-max))))
+    (shell-command-on-region beg end "seeing_is_believing" nil 'replace)))
+
+(defun seeing-is-believing-debug ()
+  "Replace the current region (or the whole buffer, if none) with
+the output of seeing_is_believing."
+  (interactive)
+  (let ((beg (if (region-active-p) (region-beginning) (point-min)))
+        (end (if (region-active-p) (region-end) (point-max))))
+    (shell-command-on-region beg end "seeing_is_believing --debug" nil 'replace)))
+
+(defun seeing-is-believing-cleanup ()
+  "Remove comments from the current region (or the whole buffer,
+if none)."
+  (interactive)
+  (let ((beg (if (region-active-p) (region-beginning) (point-min)))
+        (end (if (region-active-p) (region-end) (point-max))))
+    (replace-regexp "#[^{].*" "" nil beg end)))
+
+(add-hook 'ruby-mode-hook
+          (lambda ()
+            (local-set-key (kbd "M-s M-s") 'seeing-is-believing)
+            (local-set-key (kbd "M-s M-c") 'seeing-is-believing-cleanup)))

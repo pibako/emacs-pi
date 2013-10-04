@@ -8,3 +8,6 @@ url/*
 var/*
 flycheck-init*
 /auto-save-list/
+/vendor/floobits/
+/pi-el/myorg.el
+/bookmarks
