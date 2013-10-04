@@ -1,13 +1,13 @@
 .DS_Store
 .ercrc.el.gpg
-elpa/*
+elpa
 ac-comphist.dat
 ede-projects.el
 tramp
-url/*
-var/*
+url
+var
+pi-el
 flycheck-init*
 /auto-save-list/
 /vendor/floobits/
-/pi-el/myorg.el
 /bookmarks
