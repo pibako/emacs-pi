@@ -71,9 +71,7 @@
 
 (require 'rcodetools)
 
-(setq auto-mode-alist
-      (append  '(("\\.st\\'" . smalltalk-mode))
-               auto-mode-alist))
+(add-to-list 'auto-mode-alist '("\\.st\\'" . smalltalk-mode))
 
 (autoload 'smalltalk-mode "smalltalk-mode.elc" "Smalltalk mode" t)
 
