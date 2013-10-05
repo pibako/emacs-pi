@@ -100,5 +100,37 @@
 ;; don't use spaces
 (setq-default indent-tabs-mode nil)
 
+;; global line highlighting in all buffers
+(global-hl-line-mode +1)
+
+;; expand-region
+(require 'expand-region)
+(global-set-key (kbd "C-=") 'er/expand-region)
+
+;; auto-complete
+(require 'auto-complete-config)
+(add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
+(ac-config-default)
+
+;; delete the selection with a keypress
+(delete-selection-mode t)
+
+;; enable narrow region
+(put 'narrow-to-region 'disabled nil)
+
+;; google translate from emacs
+(setq google-translate-enable-ido-completion t)
+(setq google-translate-default-source-language "en")
+(setq google-translate-default-target-language "pl")
+(global-set-key "\C-ct" 'google-translate-at-point)
+(global-set-key "\C-cT" 'google-translate-at-point-reverse)
+
+;; itail mode
+(require 'itail)
+
+;; edit with emacs - only chrome?
+(require 'edit-server)
+(edit-server-start)
+
 ;; start emacs server
 (server-start)

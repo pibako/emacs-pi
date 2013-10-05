@@ -67,3 +67,16 @@
 (add-hook 'after-init-hook 'global-company-mode)
 (eval-after-load 'company
   '(add-to-list 'company-backends 'company-inf-ruby))
+
+;; Enable Flycheck for all files
+;; (add-hook 'find-file-hook 'flycheck-mode)
+;; Enable Flycheck for all programming modes
+;; (add-hook 'prog-mode-hook 'flycheck-mode)
+;; Enable Flycheck for all programming modes
+(add-hook 'ruby-mode-hook 'flycheck-mode)
+
+;; wrap-mode
+(wrap-region-global-mode t)
+(add-to-list 'wrap-region-tag-active-modes 'html-erb-mode)
+
+(require 'rcodetools)
