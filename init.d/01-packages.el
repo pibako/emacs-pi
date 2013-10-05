@@ -36,6 +36,7 @@
     popup
     rainbow-mode
     rinari
+    rsense
     ruby-compilation
     ruby-mode
     scala-mode2
