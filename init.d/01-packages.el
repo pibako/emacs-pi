@@ -13,45 +13,75 @@
 (defvar packages-to-install
   '(auctex
     auto-complete
+    bundler
     coffee-mode
+    company-inf-ruby
+    company
+    ctags
+    ctags-update
     exec-path-from-shell
     expand-region
     feature-mode
-    findr
     flycheck
-    gh
+    f
     gist
+    gh
     google-this
+    google-translate
     graphviz-dot-mode
+    haml-mode
+    haskell-mode
     iedit
-    inf-ruby
-    inflections
-    jump
+    itail
+    js-comint
+    js2-refactor
+    js2-mode
     logito
     magit
+    git-rebase-mode
+    git-commit-mode
     markdown-mode
     mmm-mode
+    multiple-cursors
+    nodejs-repl
+    nrepl
+    clojure-mode
+    org
+    osx-plist
     pcache
     php-mode
+    pkg-info
+    pony-mode
     popup
+    pov-mode
     rainbow-mode
+    rbenv
+    request
     rinari
+    jump
+    inflections
+    findr
     rsense
+    rspec-mode
+    ruby-block
     ruby-compilation
     ruby-mode
+    inf-ruby
+    ruby-end
+    s
     scala-mode2
+    scheme-complete
     scss-mode
+    sublimity
     textile-mode
     textmate
     w3m
     wrap-region
+    dash
     yaml-mode
     yari
     yasnippet
-    zenburn-theme
-    js-comint
-    ctags
-    ctags-update)
+    zenburn-theme)
   "A list of packages to ensure are installed at launch.")
 
 (require 'cl)
