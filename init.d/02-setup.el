@@ -60,7 +60,7 @@
 ;; (load-theme 'wombat t)
 ;; (load-theme 'adwaita t)
 ;; (load-theme 'whiteboard t)
-(load-theme 'leuven t)
+;; (load-theme 'leuven t)
 
 ;; enable paren mode
 (show-paren-mode t)
@@ -127,10 +127,6 @@
 
 ;; itail mode
 (require 'itail)
-
-;; edit with emacs - only chrome?
-(require 'edit-server)
-(edit-server-start)
 
 ;; start emacs server
 (server-start)

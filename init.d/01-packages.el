@@ -14,6 +14,9 @@
   '(auctex
     auto-complete
     coffee-mode
+    company
+    ctags
+    ctags-update
     exec-path-from-shell
     expand-region
     feature-mode
@@ -26,6 +29,8 @@
     iedit
     inf-ruby
     inflections
+    itail
+    js-comint
     jump
     logito
     magit
@@ -48,10 +53,7 @@
     yaml-mode
     yari
     yasnippet
-    zenburn-theme
-    js-comint
-    ctags
-    ctags-update)
+    zenburn-theme)
   "A list of packages to ensure are installed at launch.")
 
 (require 'cl)
