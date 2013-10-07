@@ -14,38 +14,43 @@
   '(auctex
     auto-complete
     bundler
+    clojure-mode
     coffee-mode
-    company-inf-ruby
     company
+    company-inf-ruby
     ctags
     ctags-update
+    dash
     exec-path-from-shell
     expand-region
-    feature-mode
-    flycheck
     f
-    gist
+    feature-mode
+    findr
+    flycheck
     gh
+    gist
+    git-commit-mode
+    git-rebase-mode
     google-this
     google-translate
     graphviz-dot-mode
     haml-mode
     haskell-mode
     iedit
+    inf-ruby
+    inflections
     itail
     js-comint
-    js2-refactor
     js2-mode
+    js2-refactor
+    jump
     logito
     magit
-    git-rebase-mode
-    git-commit-mode
     markdown-mode
     mmm-mode
     multiple-cursors
     nodejs-repl
     nrepl
-    clojure-mode
     org
     osx-plist
     pcache
@@ -58,16 +63,12 @@
     rbenv
     request
     rinari
-    jump
-    inflections
-    findr
     rsense
     rspec-mode
     ruby-block
     ruby-compilation
-    ruby-mode
-    inf-ruby
     ruby-end
+    ruby-mode
     s
     scala-mode2
     scheme-complete
@@ -77,7 +78,6 @@
     textmate
     w3m
     wrap-region
-    dash
     yaml-mode
     yari
     yasnippet
