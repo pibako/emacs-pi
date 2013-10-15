@@ -39,6 +39,7 @@
 ;; yes-or-no-p
 (defalias 'yes-or-no-p 'y-or-n-p)
 
+;; OS X custom settings
 (when (memq window-system '(mac ns))
   ;; setup exec path
   (exec-path-from-shell-initialize)
@@ -119,6 +120,7 @@
 (put 'narrow-to-region 'disabled nil)
 
 ;; google translate from emacs
+(require 'google-translate)
 (setq google-translate-enable-ido-completion t)
 (setq google-translate-default-source-language "en")
 (setq google-translate-default-target-language "pl")
