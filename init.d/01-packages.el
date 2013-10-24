@@ -36,6 +36,7 @@
     graphviz-dot-mode
     haml-mode
     haskell-mode
+    htmlize
     iedit
     inf-ruby
     inflections
@@ -53,6 +54,7 @@
     nrepl
     org
     osx-plist
+    ox-reveal
     pcache
     php-mode
     pkg-info

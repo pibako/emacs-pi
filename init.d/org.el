@@ -22,3 +22,9 @@
 
 ;; org-mode export to odt and doc formats
 (require 'ox-odt)
+
+;; color in sources inside org-files
+(setq org-src-fontify-natively t)
+
+;; org-reveal
+(require 'ox-reveal)
