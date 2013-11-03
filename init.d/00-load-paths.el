@@ -21,3 +21,6 @@
 
 ;; Actionscript
 (add-to-list 'load-path "~/.emacs.d/vendor/actionscript")
+
+;; Org contributions (ox-koma-letter)
+(add-to-list 'load-path "~/.emacs.d/vendor/org-contrib" t)

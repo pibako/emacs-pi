@@ -26,5 +26,9 @@
 ;; color in sources inside org-files
 (setq org-src-fontify-natively t)
 
-;; org-reveal
+;; org-reveal for presentations
 (require 'ox-reveal)
+
+(require 'ox-koma-letter)
+
+(add-to-list 'org-latex-classes '("my-letter" "\\documentclass\{scrlttr2\} \\usepackage[english]{babel} \[NO-DEFAULT-PACKAGES] \[NO-PACKAGES] \[EXTRA]"))
