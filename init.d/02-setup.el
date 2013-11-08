@@ -63,8 +63,9 @@
 ;; (load-theme 'whiteboard t)
 ;; (load-theme 'leuven t)
 
-;; enable paren mode
-(show-paren-mode t)
+;; enable smartparens mode
+(require 'smartparens-config)
+(show-smartparens-global-mode +1)
 
 ;;;;;;;;;;;;;;;;;;;; key bindings ;;;;;;;;;;;;;;;;;;;;
 ;; duplicate line

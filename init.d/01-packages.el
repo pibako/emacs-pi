@@ -75,6 +75,7 @@
     scala-mode2
     scheme-complete
     scss-mode
+    smartparens
     sublimity
     textile-mode
     textmate
