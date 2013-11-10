@@ -65,7 +65,7 @@
     rbenv
     request
     rinari
-    rsense
+    robe
     rspec-mode
     ruby-block
     ruby-compilation

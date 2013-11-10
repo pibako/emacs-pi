@@ -109,11 +109,6 @@
 (require 'expand-region)
 (global-set-key (kbd "C-=") 'er/expand-region)
 
-;; auto-complete
-(require 'auto-complete-config)
-(add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
-(ac-config-default)
-
 ;; delete the selection with a keypress
 (delete-selection-mode t)
 

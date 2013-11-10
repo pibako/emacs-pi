@@ -54,20 +54,6 @@
 ;; enable rinari globaly (previously this option was on by default?)
 (global-rinari-mode)
 
-;; Rsense
-(require 'rsense)
-
-;; Rsense + Autocomplete
-(add-hook 'ruby-mode-hook
-          (lambda ()
-            (add-to-list 'ac-sources 'ac-source-rsense-method)
-            (add-to-list 'ac-sources 'ac-source-rsense-constant)))
-
-;; Some improvements to inf-ruby mode with company-mode
-(add-hook 'after-init-hook 'global-company-mode)
-(eval-after-load 'company
-  '(add-to-list 'company-backends 'company-inf-ruby))
-
 ;; Enable Flycheck for all files
 ;; (add-hook 'find-file-hook 'flycheck-mode)
 ;; Enable Flycheck for all programming modes
