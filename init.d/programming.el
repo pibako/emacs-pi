@@ -12,5 +12,5 @@
 ;; Enable camel case for all programming modes
 (add-hook 'prog-mode-hook 'subword-mode)
 
-;; enable textmate-mode
+;; enable textmate-mode (it enables ido-mode)
 (textmate-mode)
