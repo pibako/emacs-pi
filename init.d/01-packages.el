@@ -34,6 +34,7 @@
     google-this
     google-translate
     graphviz-dot-mode
+    ido-vertical-mode
     haml-mode
     haskell-mode
     htmlize
@@ -76,6 +77,7 @@
     scheme-complete
     scss-mode
     smartparens
+    smex
     sublimity
     textile-mode
     textmate

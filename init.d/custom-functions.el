@@ -97,3 +97,25 @@ by using nxml's indentation rules."
       (backward-char) (insert "\n"))
     (indent-region begin end))
   (message "Ah, much better!"))
+
+;; textmate shift functions - since I don't use textmate I stole those
+;; methods and created new bindings that work throughout window and
+;; non-window environments.
+(defun textmate-shift-right (&optional arg)
+  "Shift the line or region to the ARG places to the right.
+
+A place is considered `tab-width' character columns."
+  (interactive)
+  (let ((deactivate-mark nil)
+        (beg (or (and mark-active (region-beginning))
+                 (line-beginning-position)))
+        (end (or (and mark-active (region-end)) (line-end-position))))
+    (indent-rigidly beg end (* (or arg 1) tab-width))))
+
+(defun textmate-shift-left (&optional arg)
+  "Shift the line or region to the ARG places to the left."
+  (interactive)
+  (textmate-shift-right (* -1 (or arg 1))))
+
+(global-set-key (kbd "C-c ]") 'textmate-shift-right)
+(global-set-key (kbd "C-c [") 'textmate-shift-left)

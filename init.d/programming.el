@@ -13,4 +13,4 @@
 (add-hook 'prog-mode-hook 'subword-mode)
 
 ;; enable textmate-mode (it enables ido-mode)
-(textmate-mode)
+;; (textmate-mode)
