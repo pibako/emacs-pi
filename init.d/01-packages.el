@@ -14,6 +14,7 @@
   '(auctex
     auto-complete
     bundler
+    cider
     clojure-mode
     coffee-mode
     company
@@ -52,7 +53,6 @@
     mmm-mode
     multiple-cursors
     nodejs-repl
-    nrepl
     org
     osx-plist
     ox-reveal
