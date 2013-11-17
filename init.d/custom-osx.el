@@ -12,4 +12,6 @@
   (setq frame-title-format '(:eval
                              (if (buffer-file-name)
                                  (abbreviate-file-name (buffer-file-name))
-                               "%b"))))
+                               "%b")))
+  ;; global line highlighting in all buffers
+  (global-hl-line-mode +1))

@@ -86,9 +86,6 @@
 ;; don't use spaces
 (setq-default indent-tabs-mode nil)
 
-;; global line highlighting in all buffers
-(global-hl-line-mode +1)
-
 ;; expand-region
 (require 'expand-region)
 (global-set-key (kbd "C-=") 'er/expand-region)
