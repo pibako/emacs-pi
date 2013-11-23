@@ -66,4 +66,8 @@
 (wrap-region-global-mode t)
 (add-to-list 'wrap-region-tag-active-modes 'html-erb-mode)
 
+;; rcodetools provides xmpfilter for in buffer evaluation
 (require 'rcodetools)
+
+;; Enable robe (for Ruby)
+(add-hook 'ruby-mode-hook 'robe-mode)
