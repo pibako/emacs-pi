@@ -22,6 +22,7 @@
     ctags
     ctags-update
     dash
+    ensime
     exec-path-from-shell
     expand-region
     f

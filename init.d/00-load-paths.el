@@ -10,9 +10,6 @@
 ;; Cool mode
 (add-to-list 'load-path "~/.emacs.d/vendor/cool-mode")
 
-;; Ensime
-(add-to-list 'load-path "~/.emacs.d/vendor/ensime/elisp/")
-
 ;; Rcodetools
 (add-to-list 'load-path "~/.emacs.d/vendor/rcodetools")
 
