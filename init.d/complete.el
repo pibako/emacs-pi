@@ -1,6 +1,6 @@
 ;; Use company-mode in all buffers
 (add-hook 'after-init-hook 'global-company-mode)
-(company-idle-delay nil)                ; do not complete automatically
+(setq company-idle-delay nil)                ; do not complete automatically
 
 ;; Add company-inf-ruby backend (it works nicely inside inf-ruby mode)
 (eval-after-load 'company
