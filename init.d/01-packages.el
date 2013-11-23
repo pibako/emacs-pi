@@ -79,6 +79,7 @@
     smartparens
     smex
     sublimity
+    tern
     textile-mode
     textmate
     w3m

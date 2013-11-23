@@ -10,3 +10,6 @@
 (setq js-indent-level 2)
 
 (setq inferior-js-program-command "/usr/local/bin/rhino")
+
+;; Always run tern when in js-mode.
+(add-hook 'js-mode-hook (lambda () (tern-mode t)))
