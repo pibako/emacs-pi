@@ -11,3 +11,4 @@ flycheck-init*
 /auto-save-list/
 /vendor/floobits/
 /bookmarks
+.cask
