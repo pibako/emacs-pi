@@ -25,6 +25,8 @@
 ;; get rid of this silly toolbar
 (tool-bar-mode -1)
 
+(setq column-number-mode t)
+
 ;; get rid of splash screen
 (setq inhibit-splash-screen t)
 
