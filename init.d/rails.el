@@ -11,6 +11,7 @@
   (add-to-list 'auto-mode-alist '("\\.rb\\'" . ruby-mode))
   (add-to-list 'auto-mode-alist '("\\.ru\\'" . ruby-mode))
   (add-to-list 'auto-mode-alist '("\\.xml.builder\\'" . ruby-mode))
+  (add-to-list 'auto-mode-alist '("\\.json.jbuilder\\'" . ruby-mode))
   (add-hook 'ruby-mode-hook '(lambda ()
                                (setq ruby-deep-arglist t)
                                ;; (setq ruby-deep-indent-paren nil)
