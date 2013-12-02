@@ -83,7 +83,7 @@ Position the cursor at its beginning, according to the current mode."
 
 (global-set-key [(shift return)] 'smart-open-line)
 
-(defun bf-pretty-print-xml-region (begin end)
+(defun beautify-xml-region (begin end)
   "Pretty format XML markup in region.  You need to have nxml-mode
 http://www.emacswiki.org/cgi-bin/wiki/NxmlMode installed to do
 this.  The function inserts linebreaks to separate tags that have
@@ -97,6 +97,14 @@ by using nxml's indentation rules."
       (backward-char) (insert "\n"))
     (indent-region begin end))
   (message "Ah, much better!"))
+
+(defun beautify-json ()
+  "Pretty format JSON in region."
+  (interactive)
+  (let ((b (if mark-active (min (point) (mark)) (point-min)))
+        (e (if mark-active (max (point) (mark)) (point-max))))
+    (shell-command-on-region b e
+     "python -mjson.tool" (current-buffer) t)))
 
 ;; textmate shift functions - since I don't use textmate I stole those
 ;; methods and created new bindings that work throughout window and
