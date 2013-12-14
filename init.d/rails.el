@@ -72,3 +72,4 @@
 
 ;; Enable robe (for Ruby)
 (add-hook 'ruby-mode-hook 'robe-mode)
+(setq robe-turn-on-eldoc nil)
