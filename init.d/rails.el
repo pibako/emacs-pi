@@ -73,3 +73,6 @@
 ;; Enable robe (for Ruby)
 (add-hook 'ruby-mode-hook 'robe-mode)
 (setq robe-turn-on-eldoc nil)
+
+;; use bundle exec with the cucumber
+(setq feature-cucumber-command "bundle exec cucumber CUCUMBER_OPTS=\"{options}\" \"{feature}\"")

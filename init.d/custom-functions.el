@@ -127,3 +127,41 @@ A place is considered `tab-width' character columns."
 
 (global-set-key (kbd "C-c ]") 'textmate-shift-right)
 (global-set-key (kbd "C-c [") 'textmate-shift-left)
+
+
+(defun occurrences (regexp &rest ignore)
+  "Show all matches for REGEXP in an `occur' buffer."
+  ;; keep text covered by occur-prefix and match text-properties
+  (interactive (occur-read-primary-args))
+  (occur regexp)
+  (with-current-buffer (get-buffer "*Occur*")
+    (let ((inhibit-read-only t)
+    delete-from
+    pos)
+      (save-excursion
+  (while (setq pos (next-property-change (point)))
+    (goto-char pos)
+    (if (not (or (get-text-property (point) 'occur-prefix)
+           (get-text-property (point) 'occur-match)))
+        (if delete-from
+      (delete-region delete-from (point))
+    (setq delete-from (point)))
+      (when delete-from
+        (delete-region delete-from (point))
+        (if (get-text-property (point) 'occur-prefix)
+      (insert "\n")
+    (insert " ")))
+      (setq delete-from nil)))))))
+
+(defun uniquify-region-lines (beg end)
+  "Remove duplicate adjacent lines in region."
+  (interactive "*r")
+  (save-excursion
+    (goto-char beg)
+    (while (re-search-forward "^\\(.*\n\\)\\1+" end t)
+      (replace-match "\\1"))))
+
+(defun uniquify-buffer-lines ()
+  "Remove duplicate adjacent lines in the current buffer."
+  (interactive)
+  (uniquify-region-lines (point-min) (point-max)))

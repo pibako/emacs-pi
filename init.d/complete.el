@@ -8,4 +8,4 @@
 (eval-after-load 'company
   '(add-to-list 'company-backends 'company-robe))
 
-(global-set-key (kbd "<C-tab>") 'company-complete-common)
+;; (global-set-key  (kbd "<C-tab>") 'company-complete-common)
