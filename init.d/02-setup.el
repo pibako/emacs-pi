@@ -35,8 +35,8 @@
 (setq auto-save-default nil)
 
 ;; set initial size of frame
-(add-to-list 'default-frame-alist '(height . 57))
-(add-to-list 'default-frame-alist '(width . 84))
+(add-to-list 'default-frame-alist '(height . 66))
+(add-to-list 'default-frame-alist '(width . 97))
 
 ;; yes-or-no-p
 (defalias 'yes-or-no-p 'y-or-n-p)
@@ -108,6 +108,9 @@
 
 ;; itail mode
 (require 'itail)
+
+;; run mtgox-mode
+(mtgox-mode)
 
 ;; start emacs server
 (server-start)
