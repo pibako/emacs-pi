@@ -14,4 +14,8 @@
                                  (abbreviate-file-name (buffer-file-name))
                                "%b")))
   ;; global line highlighting in all buffers
-  (global-hl-line-mode +1))
+  (global-hl-line-mode +1)
+  ;; Start edit server
+  (when (require 'edit-server nil t)
+    (setq edit-server-new-frame nil)
+    (edit-server-start)))

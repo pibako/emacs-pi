@@ -2,6 +2,8 @@
 (add-hook 'org-mode-hook 'turn-on-auto-fill)
 (add-hook 'org-mode-hook 'flyspell-mode)
 
+(setq org-clock-idle-time 10)
+
 ;; enable reftex
 (defun org-mode-reftex-setup ()
   (load-library "reftex")
@@ -29,6 +31,4 @@
 ;; org-reveal for presentations
 (require 'ox-reveal)
 
-(require 'ox-koma-letter)
 
-(add-to-list 'org-latex-classes '("my-letter" "\\documentclass\{scrlttr2\} \\usepackage[english]{babel} \[NO-DEFAULT-PACKAGES] \[NO-PACKAGES] \[EXTRA]"))

@@ -1,5 +1,5 @@
 ;; YASnippet
-(yas-global-mode 1)
+(yas-global-mode)
 
 ;; add rspec snippets
 (eval-after-load 'rspec-mode

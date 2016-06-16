@@ -12,3 +12,4 @@ flycheck-init*
 /vendor/floobits/
 /bookmarks
 .cask
+ensime/

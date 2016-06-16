@@ -36,7 +36,7 @@
 
 ;; set initial size of frame
 (add-to-list 'default-frame-alist '(height . 66))
-(add-to-list 'default-frame-alist '(width . 97))
+(add-to-list 'default-frame-alist '(width . 120))
 
 ;; yes-or-no-p
 (defalias 'yes-or-no-p 'y-or-n-p)
@@ -48,6 +48,9 @@
 ;; (load-theme 'adwaita t)
 ;; (load-theme 'whiteboard t)
 ;; (load-theme 'leuven t)
+
+;; set fill width
+(setq-default fill-column 120)
 
 ;; enable smartparens mode
 (require 'smartparens-config)
@@ -108,9 +111,6 @@
 
 ;; itail mode
 (require 'itail)
-
-;; run mtgox-mode
-(mtgox-mode)
 
 ;; start emacs server
 (server-start)

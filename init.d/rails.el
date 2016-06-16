@@ -12,6 +12,8 @@
   (add-to-list 'auto-mode-alist '("\\.ru\\'" . ruby-mode))
   (add-to-list 'auto-mode-alist '("\\.xml.builder\\'" . ruby-mode))
   (add-to-list 'auto-mode-alist '("\\.json.jbuilder\\'" . ruby-mode))
+  (add-to-list 'auto-mode-alist '("\\.jbuilder\\'" . ruby-mode))
+  (set-fill-column 120)                ; Set fill column to 120
   (add-hook 'ruby-mode-hook '(lambda ()
                                (setq ruby-deep-arglist t)
                                ;; (setq ruby-deep-indent-paren nil)
@@ -38,6 +40,15 @@
 (add-to-list 'auto-mode-alist '("\\.html\\.erb\\'" . html-erb-mode))
 (add-to-list 'auto-mode-alist '("\\.jst\\.ejs\\'"  . html-erb-mode))
 (add-to-list 'auto-mode-alist '("\\.jst\\.eco\\'"  . html-erb-mode))
+
+
+(add-hook 'html-erb-mode
+          (lambda ()
+            (set-fill-column 120)))
+
+
+(require 'web-mode)
+(add-to-list 'auto-mode-alist '("\\.js\\.erb\\'" . web-mode))
 
 ;; Optional settings:
 
@@ -76,3 +87,6 @@
 
 ;; use bundle exec with the cucumber
 (setq feature-cucumber-command "bundle exec cucumber CUCUMBER_OPTS=\"{options}\" \"{feature}\"")
+
+;; find file in project
+(global-set-key (kbd "C-x f") 'fiplr-find-file)

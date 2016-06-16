@@ -1,5 +1,3 @@
-(add-to-list 'load-path "~/.emacs.d/")
-
 ;; Maxima load path
 (add-to-list 'load-path "~/.emacs.d/vendor/maxima/")
 (add-to-list 'load-path "/Applications/Maxima.app/Contents/Resources/maxima/share/maxima/5.26.0/emacs")
