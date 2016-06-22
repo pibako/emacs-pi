@@ -103,7 +103,6 @@
 
 ;; google translate from emacs
 (require 'google-translate)
-(setq google-translate-enable-ido-completion t)
 (setq google-translate-default-source-language "en")
 (setq google-translate-default-target-language "pl")
 (global-set-key "\C-ct" 'google-translate-at-point)

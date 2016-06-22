@@ -13,3 +13,4 @@ flycheck-init*
 /bookmarks
 .cask
 ensime/
+/projectile-bookmarks.eld
