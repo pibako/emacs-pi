@@ -1,17 +1,28 @@
-;; delete whitespace and untabify
-(add-hook 'before-save-hook 'delete-trailing-whitespace)
+;; delete whitespace
+(add-hook 'before-save-hook
+          (lambda
+            (let ((dx-java-modes '(java-mode
+                                   malabar-mode
+                                   malabar-java-mode
+                                   conf-javaprop-mode)))
+              (if (not (member major-mode dx-java-modes))
+                  delete-trailing-whitespace))))
 
-(defun untabify-hook ()
-  (let ((tab-sensitive-modes '(makefile-mode
-                               makefile-automake-mode
-                               makefile-gmake-mode
-                               makefile-imake-mode
-                               makefile-makepp-mode
-                               makefile-bsdmake-mode)))
-    (if (not (member major-mode tab-sensitive-modes))
-        (untabify (point-min) (point-max)))))
-
-(add-hook 'before-save-hook 'untabify-hook)
+;; and untabify
+(add-hook 'before-save-hook
+          (lambda
+            (let ((tab-sensitive-modes '(makefile-mode
+                                         makefile-automake-mode
+                                         makefile-gmake-mode
+                                         makefile-imake-mode
+                                         makefile-makepp-mode
+                                         makefile-bsdmake-mode
+                                         java-mode
+                                         malabar-mode
+                                         malabar-java-mode
+                                         conf-javaprop-mode)))
+              (if (not (member major-mode tab-sensitive-modes))
+                  (untabify (point-min) (point-max))))))
 
 ;; Add flyspell check in comments
 (add-hook 'prog-mode-hook 'flyspell-prog-mode)
