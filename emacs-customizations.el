@@ -9,6 +9,7 @@
     ("11636897679ca534f0dec6f5e3cb12f28bf217a527755f6b9e744bd240ed47e1" default)))
  '(magit-branch-arguments nil)
  '(org-agenda-files nil)
+ '(robe-completing-read-func (quote helm-robe-completing-read))
  '(safe-local-variable-values
    (quote
     ((encoding . utf-8)

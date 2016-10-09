@@ -31,4 +31,5 @@
 ;; org-reveal for presentations
 (require 'ox-reveal)
 
-
+;; org-page
+(require 'org-page)

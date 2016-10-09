@@ -18,4 +18,18 @@
   ;; Start edit server
   (when (require 'edit-server nil t)
     (setq edit-server-new-frame nil)
-    (edit-server-start)))
+    (edit-server-start))
+
+  (defun open-in-intellij ()
+    "Open file in intelliJ"
+    (interactive)
+    (when buffer-file-name
+      (shell-command
+       (concat "\"/Applications/IntelliJ IDEA CE.app/Contents/MacOS/idea\""
+               projectile-project-root
+               " --line "
+               (number-to-string (line-number-at-pos))
+               " "
+               buffer-file-name
+               " &"))))
+  (global-set-key (kbd "C-c i") 'open-in-intellij))

@@ -74,11 +74,6 @@
 ;; smart tab - press once -> indent, press second time -> autocomplete
 (setq tab-always-indent 'complete)
 
-;; nice way to have look at your kill ring contents
-;; (global-set-key "\C-cy" '(lambda ()
-;;         (interactive)
-;;         (popup-menu 'yank-menu)))
-
 ;; window move
 (windmove-default-keybindings)
 

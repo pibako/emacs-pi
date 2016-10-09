@@ -29,3 +29,7 @@
 
 ;; Enable camel case for all programming modes
 (add-hook 'prog-mode-hook 'subword-mode)
+
+
+(require 'editorconfig)
+(editorconfig-mode 1)
