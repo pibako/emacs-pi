@@ -12,8 +12,6 @@
 ;; installed packages.  Don't delete this line.  If you don't want it,
 ;; just comment it out by adding a semicolon to the start of the line.
 ;; You may delete these explanatory comments.
-(package-initialize)
-
 (setq pi-emacs-init-file (or load-file-name buffer-file-name))
 (setq pi-emacs-config-dir
       (file-name-directory pi-emacs-init-file))
@@ -28,3 +26,4 @@
 ;; Set up 'custom' system
 (setq custom-file (expand-file-name "emacs-customizations.el" pi-emacs-config-dir))
 (load custom-file)
+(put 'narrow-to-page 'disabled nil)

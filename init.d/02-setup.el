@@ -43,7 +43,7 @@
 
 ;; change theme to theme-zenburn
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
-;; (load-theme 'zenburn t)
+(load-theme 'zenburn t)
 ;; (load-theme 'wombat t)
 ;; (load-theme 'adwaita t)
 ;; (load-theme 'whiteboard t)
@@ -70,6 +70,8 @@
 
 ;; dired human readable
 (setq dired-listing-switches "-alh")
+;; dired delete by moving to trash
+(setq delete-by-moving-to-trash t)
 
 ;; smart tab - press once -> indent, press second time -> autocomplete
 (setq tab-always-indent 'complete)

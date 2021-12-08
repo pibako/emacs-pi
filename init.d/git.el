@@ -6,7 +6,7 @@
 (require 'git-gutter)
 (global-git-gutter-mode t)
 
-(global-set-key (kbd "C-c p") 'magit-find-file-completing-read)
+;; (global-set-key (kbd "C-c p") 'magit-find-file-completing-read)
 (global-set-key (kbd "C-c v") 'vc-git-grep)
 
 (setq git-messenger:show-detail t)

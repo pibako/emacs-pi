@@ -12,3 +12,6 @@ the current directory in Python's search path."
   (python-send-string "sys.path[0:0] = ['']"))
 
 (add-hook 'inferior-python-mode-hook 'python-reinstate-current-directory)
+
+;; (add-hook 'python-mode-hook 'anaconda-mode)
+;; (add-hook 'python-mode-hook 'anaconda-eldoc-mode)

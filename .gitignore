@@ -14,3 +14,4 @@ flycheck-init*
 .cask
 ensime/
 /projectile-bookmarks.eld
+/anaconda-mode

@@ -176,4 +176,11 @@ A place is considered `tab-width' character columns."
       (kill-new filename)
       (message "Copied buffer file name '%s' to the clipboard." filename))))
 
+(defun sort-lines-nocase ()
+  "Sort line case insensitive"
+  (interactive)
+  (let ((sort-fold-case t))
+    (call-interactively 'sort-lines)))
+
+
 (global-set-key (kbd "C-c c") 'copy-file-name-to-clipboard)

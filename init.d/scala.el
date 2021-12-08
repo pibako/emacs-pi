@@ -2,7 +2,7 @@
 ;; (require 'scala-mode-auto)
 
 ;; load the ensime lisp code...
-(require 'ensime)
+;; (require 'ensime)
 
 ;; This step causes the ensime-mode to be started whenever
 ;; scala-mode2 is started for a buffer. You may have to customize this step

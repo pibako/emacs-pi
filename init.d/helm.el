@@ -18,7 +18,9 @@
 (global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "C-x f") 'helm-browse-project)
 
+(projectile-mode 1)
 (projectile-global-mode)
+(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 (setq projectile-completion-system 'helm)
 (helm-projectile-on)
 

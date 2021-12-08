@@ -29,7 +29,14 @@
 (setq org-src-fontify-natively t)
 
 ;; org-reveal for presentations
-(require 'ox-reveal)
+;; (require 'ox-reveal)
 
 ;; org-page
 (require 'org-page)
+(setq op/repository-directory "~/code/kom-mix/")
+(setq op/site-domain "http://kom-mix-partacze.pl/")
+;;; for commenting, you can choose either disqus or duoshuo
+;; (setq op/personal-disqus-shortname "pibako")
+;; (setq op/personal-duoshuo-shortname "your_duoshuo_shortname")
+;;; the configuration below are optional
+;; (setq op/personal-google-analytics-id "your_google_analytics_id")
